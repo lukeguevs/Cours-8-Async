@@ -8,11 +8,11 @@ Notez que la partie _XML_ est là pour des raisons historiques : on peut récup�
 
 Les navigateurs modernes supportent 2 manières d'envoyer des requêtes HTTP : [XMLHttpRequest(XHR)](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) et l'api [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). 
  
-Au niveau réseautique, les 2 approches sont les mêmes, mais leur utilisation dans le JS est légérement différent.
+Au niveau réseautique, les 2 approches sont les mêmes, mais leur utilisation dans le JS est légérement différente.
 
 ## XHR
 
-XMLHttpRequest ou XHR est une approche basée sur les événements (un objet `XMLHttpRequest` implémente l'interface `EventTarget` du DOM). Par exemple, l'événement [`readystatechange`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readystatechange_event) est lancé à chaque changement de l'état de la requête (propriété `readyState`). Un état de `XMLHttpRequest.DONE` (égal à `4`) indique que la requête a été envoyée et une réponse HTTP a été reçue.
+XMLHttpRequest ou _XHR_ est une approche basée sur les événements (un objet `XMLHttpRequest` implémente l'interface `EventTarget` du DOM). Par exemple, l'événement [`readystatechange`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readystatechange_event) est lancé à chaque changement de l'état de la requête (propriété `readyState`). Un état de `XMLHttpRequest.DONE` (égal à `4`) indique que la requête a été envoyée et une réponse HTTP a été reçue.
 
 À noter que les attributs de la réponse HTTP sont sur le même objet `XMLHttpRequest` que la requête.
  
@@ -24,7 +24,7 @@ Le code dans [xhr.js](./xhr/xhr.js) contient des exemples de requêtes `GET` et 
 
 ## Fetch
 
-L'API Fetch est une approche basée sur les `Promise` et est, généralement, plus concise que XHR. L'API utilise la fonction globale `fetch(resource, options)` qui retourne un objet `Promise<Response>` qui contient la réponse à la requête.
+L'API Fetch est une approche basée sur les `Promise` et est, généralement, plus concise que _XHR_. L'API utilise la fonction globale `fetch(resource, options)` qui retourne un objet `Promise<Response>` qui contient la réponse à la requête.
 
 À noter que contrairement à XHR, les objets [`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request) et [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) sont différents.
 

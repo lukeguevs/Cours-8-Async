@@ -1,5 +1,3 @@
-// Nécessite une connection HTTPs
-
 // Englober la fonction asynchrone dans une Promise
 function getPosition(options) {
     return new Promise((resolve, reject) => {

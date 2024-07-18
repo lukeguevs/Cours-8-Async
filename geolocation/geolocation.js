@@ -1,4 +1,3 @@
-// Nécessite une connection HTTPs
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,

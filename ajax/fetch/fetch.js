@@ -51,8 +51,21 @@ function postRequest() {
 }
 
 // TODO : Alternative utilisant async/await
-function postRequestAsync() {
+async function postRequestAsync() {
   const postTextElement = document.getElementById("post-text");
   const content = document.getElementById('server-message').value;
-  const data = { titre: "Message de Fetch", contenu: `${content}` };
+  const data = { titre: "Message de Fetch avec async/await", contenu: `${content}` };
+
+  /* Solution. N'oubliez pas de changer la fonction appelée dans le HTML
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts", options);
+  const json = await res.json();
+  postTextElement.textContent = JSON.stringify(json);
+   */
 }

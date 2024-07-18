@@ -2,9 +2,9 @@
 
 ## Fonctions asynchrones
 
-Le langage JavaScript est un langage synchrone et tout le code s'exécute sur le même fil d'exécution. Il est cependant parfois intéressant d'avoir des fonctionnalités supplémentaires qui ne bloquent pas le fil d'exécution et sont traités en parallèle. Par exemple : la détection d'événements dans la page, les minuteries, les appels réseau, etc.
+Le langage JavaScript est un langage synchrone et tout le code s'exécute sur le même fil d'exécution. Il est cependant parfois intéressant d'avoir des fonctionnalités supplémentaires qui ne bloquent pas le fil d'exécution et sont traitées en parallèle. Par exemple : la détection d'événements dans la page, les minuteries, les appels réseau, etc.
 
-Ce type de fonctionnalités est offert par le navigateur grace à des fonctions asynchrones : des fonctions qui sont exécutés hors du contexte JS principal et dont la réponse est traitée après l'exécution du code JS principal dans la boucle d'événements.
+Ce type de fonctionnalités est offert par le navigateur grace à des fonctions asynchrones : des fonctions qui sont exécutées hors du contexte JS principal et dont la réponse est traitée après l'exécution du code JS principal dans la boucle d'événements.
 
 Un exemple concret est la fonction `setTimeout(handler,timeout)` qui débute une minuterie et, après `timeout` millisecondes, place un appel vers la fonction `handler` sur la file d'attente pour la boucle d'événements. Les scripts dans le répertoire [async](./async/) sont des exemples d'utilisation de cette fonction asynchrone ainsi que les enjeux possibles dans le cas où les fonctions de rappel des fonctions asynchrones ne s'exécutent pas dans le même ordre que leurs déclarations.
 
@@ -12,10 +12,10 @@ Un exemple concret est la fonction `setTimeout(handler,timeout)` qui débute une
 
 Une alternative aux fonctions asynchrones est l'utilisation des objets `Promise`. L'objet représente le résultat ou l’échec éventuel d’un traitement asynchrone.
 
-Le `Promise` est crée avec une fonction d'exécution ayant 2 paramètres qui sont aussi des fonctions. La fonction d'exécution fait appel à des fonctions asynchrones et passe les 2 paramètres comme des fonctions de rappel à ces fonctions asynchrones.
+Le `Promise` est créé avec une fonction d'exécution ayant 2 paramètres qui sont aussi des fonctions. La fonction d'exécution fait appel à des fonctions asynchrones et passe les 2 paramètres comme des fonctions de rappel à ces fonctions asynchrones.
 
 ```js
-const promise = new Promise((resolve,reject) => { ... });
+const promise = new Promise((resolve,reject) => { setTimeout(resolve,1000) });
 ```
 
 Les 2 fonctions se comportent comme un `return` et prennent en paramètre la valeur à retour. La différence est le traitement d'une promesse résolue ou rejetée par la suite. 
@@ -39,9 +39,21 @@ waitMessage("Message 1", 500)
   .then((newTime) => waitMessage("Message 3", newTime));
 ```
 
+Voici un exemple de la gestion d'un rejet de promesse avec `reject`. Notez que la méthode `fetch` retourne une `Promise` également : 
+
+```js
+fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
+  .then((response) => {
+    if (response.status === 404) {
+      return Promise.reject(id);
+    }
+  }
+);
+```
+
 ### Syntaxe `async`/`await`
 
-Une alternative introduite avec ES2017 est l'utilisation de la syntaxe `async`/`await` pour alléger l'utilisation des `Promise` (qui sont quand même toujours utilisés).
+Une alternative introduite avec ES2017 est l'utilisation de la syntaxe `async`/`await` pour alléger l'utilisation des `Promise` (qui sont quand même toujours utilisés en arrière).
 
 Une fonction déclarée avec le mot clé `async` retourne implicitement un objet de type `Promise`. À noter que ceci ne rend pas la fonction "asynchrone" en soit.
 
