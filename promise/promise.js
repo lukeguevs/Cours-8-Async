@@ -19,3 +19,15 @@ const promise2 = new Promise((_, reject) => {
 promise2.catch((err) => {
   console.log(`L'erreur est : ${err}`); // L'erreur est : Mon erreur
 });
+
+const promise3 = new Promise((resolve, reject) => {
+  const rand = Math.random();
+  if(rand > 0.5) {
+    resolve(`OK avec ${rand}`);
+  }
+  else {
+    reject(`Erreur avec ${rand}`);
+  }
+});
+
+promise3.then(console.log).catch(console.error);
