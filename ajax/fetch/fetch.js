@@ -55,6 +55,14 @@ async function postRequestAsync() {
   const postTextElement = document.getElementById("post-text");
   const content = document.getElementById('server-message').value;
   const data = { titre: "Message de Fetch avec async/await", contenu: `${content}` };
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  postTextElement.textContent = JSON.stringify(await res.json());
 
   /* Solution. N'oubliez pas de changer la fonction appelée dans le HTML
   const options = {
